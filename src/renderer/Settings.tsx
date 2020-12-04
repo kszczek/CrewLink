@@ -325,6 +325,7 @@ export default function Settings({ open, onClose }: SettingsProps) {
 					type: 'setOne',
 					action: ['maxDistance', /[0-9]+([\.,][0-9]+)?/.test(ev.target.value) ? parseFloat(ev.target.value) : 5.3]
 				})} value={settings.maxDistance} />
+				<span>{settings.maxDistance}</span>
 			</div>
 		</div>
 	</div>
