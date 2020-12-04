@@ -83,6 +83,10 @@ const store = new Store<ISettings>({
 		stereoInLobby: {
 			type: 'boolean',
 			default: true
+		},
+		maxDistance: {
+			type: 'number',
+			default: 5.32
 		}
 	}
 });
@@ -106,6 +110,7 @@ export interface ISettings {
 	},
 	hideCode: boolean;
 	stereoInLobby: boolean;
+	maxDistance: number;
 }
 export const settingsReducer = (state: ISettings, action: {
 	type: 'set' | 'setOne', action: [string, any] | ISettings
@@ -313,6 +318,13 @@ export default function Settings({ open, onClose }: SettingsProps) {
 			})}>
 				<input type="checkbox" checked={settings.stereoInLobby} style={{ color: '#fd79a8' }} readOnly />
 				<label>Stereo Audio in Lobbies</label>
+			</div>
+			<div className="form-control l m" style={{ color: '#3498db' }}>
+				<label>Max Distance</label>
+				<input spellCheck={false} type="range" min="1" max="10" step="0.1" onChange={(ev) => setSettings({
+					type: 'setOne',
+					action: ['maxDistance', /[0-9]+([\.,][0-9]+)?/.test(ev.target.value) ? parseFloat(ev.target.value) : 5.3]
+				})} value={settings.maxDistance} />
 			</div>
 		</div>
 	</div>
