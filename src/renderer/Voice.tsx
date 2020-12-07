@@ -127,6 +127,14 @@ export default function Voice() {
 	}, [settings.pushToTalk]);
 
 	useEffect(() => {
+		if (audioElements.current) {
+			for (let peer in audioElements.current) {
+				audioElements.current[peer].pan.maxDistance = settings.maxDistance;
+			}
+		}
+	}, [settings.maxDistance]);
+
+	useEffect(() => {
 		settingsRef.current = settings;
 	}, [settings]);
 
